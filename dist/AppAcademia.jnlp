@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="AppAcademia.jnlp">
+  <information>
+    <title>AppAcademia</title>
+    <vendor>guillermogallegogonzalez</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="AppAcademia.jar" size="3554938" download="eager" />
+    <jar href="lib/TemporizadorAA.jar" size="7132" download="eager" />
+    <jar href="lib/fontawesomefx-8.9_2.jar" size="571068" download="eager" />
+    <jar href="lib/hsqldb-jdk8.jar" size="1659868" download="eager" />
+    <jar href="lib/jakarta.persistence-2.2.3.jar" size="173811" download="eager" />
+    <jar href="lib/jfoenix-8.0.10.jar" size="2710207" download="eager" />
+    <jar href="lib/org.eclipse.persistence.antlr-2.7.10.jar" size="147580" download="eager" />
+    <jar href="lib/org.eclipse.persistence.asm-9.2.0.jar" size="322138" download="eager" />
+    <jar href="lib/org.eclipse.persistence.core-2.7.10.jar" size="5248894" download="eager" />
+    <jar href="lib/org.eclipse.persistence.jpa-2.7.10.jar" size="1413599" download="eager" />
+    <jar href="lib/org.eclipse.persistence.jpa.jpql-2.7.10.jar" size="1333327" download="eager" />
+    <jar href="lib/org.eclipse.persistence.moxy-2.7.10.jar" size="621251" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="800" height="600" main-class="appacademia.Main"  name="AppAcademia" />
+  <update check="always"/>
+</jnlp>
