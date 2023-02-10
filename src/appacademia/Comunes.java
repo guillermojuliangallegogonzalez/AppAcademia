@@ -5,8 +5,13 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.UnaryOperator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,13 +25,20 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.input.KeyEvent;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  * @author Alejandro, Guillermo, Juanjo
  */
 public class Comunes {
-
     
+    private static Connection conexion;
 
     /*-----------------------------------------Patrón alfabético----------------------------------------------------------*/
     public static void patronAlfabetico(JFXTextField textField) {
@@ -263,4 +275,54 @@ public class Comunes {
         });
     }
 
+    // Método para generar los informese de JasperReport
+    public static void generaInformes(String nombreJasperReport) {
+        
+        conexion = conectar();
+        
+        try {
+            JasperReport jr = (JasperReport) JRLoader.loadObject(Comunes.class.getResource(nombreJasperReport));
+            // Map de parámetros
+            Map parametros = new HashMap();
+
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr,
+                    parametros, conexion);
+            // **  Al establecer false, tras cerrar el jasper creado, no se terminará la ejecución de la aplicación
+            JasperViewer.viewReport(jp, false);
+        } catch (JRException ex) {
+
+            System.out.println("Error al recuperar el jasper");
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    // Método para la conexión con la base de datos
+    public static Connection conectar() {
+        conexion = null; // Variable de tipo Connection para establecer la conexión
+
+        // Establecemos conexión con la BD ******* MODIFICAR NOMBRE DE LA BASE DE DATOS *********
+        String baseDatos = "jdbc:hsqldb:hsql://localhost/SampleDB";
+        String usuario = "sa";
+        String clave = "";
+
+        try {
+            Class.forName("org.hsqldb.jdbcDriver").newInstance();
+            conexion = DriverManager.getConnection(baseDatos, usuario, clave);
+
+        } catch (ClassNotFoundException cnfe) {
+            System.err.println("Fallo al cargar JDBC");
+            System.exit(1);
+        } catch (SQLException sqle) {
+            System.err.println("No se pudo conectar a BD");
+            System.exit(1);
+        } catch (java.lang.InstantiationException sqlex) {
+            System.err.println("Imposible Conectar");
+            System.exit(1);
+        } catch (Exception ex) {
+            System.err.println("Imposible Conectar");
+            System.exit(1);
+        }
+        
+        return conexion;
+    }
 }

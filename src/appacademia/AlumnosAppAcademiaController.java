@@ -20,6 +20,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Dialog;
@@ -44,7 +45,7 @@ public class AlumnosAppAcademiaController implements Initializable {
     private EntityManagerFactory emf;
     private EntityManager em;
     private Alumnos alumnoSeleccionado;
-     private List<Alumnos> listaAlumnos;
+    private List<Alumnos> listaAlumnos;
     @FXML
     private TableView<Alumnos> AlumnosTableView;
     @FXML
@@ -63,6 +64,8 @@ public class AlumnosAppAcademiaController implements Initializable {
     private AnchorPane alumnosAnchorPane;
     @FXML
     private JFXTextField barraBusqueda;
+    @FXML
+    private Button btnVerAlumnos;
 
     public void setEntityManager(EntityManager entityManager) {
         this.em = entityManager;
@@ -147,12 +150,12 @@ public class AlumnosAppAcademiaController implements Initializable {
                 vista.OnActionButtonAlumnoSeccion();
 
             } else if (clickedButton.get() == ButtonType.APPLY) {
-                
+
                 editarAlumnoViewController.introducirDatosAlumno(consulta);
                 dialog.close();
                 VistaPrincipalController vista2 = new VistaPrincipalController();
                 vista2.OnActionButtonAlumnoSeccion();
-                
+
             }
 
             try {
@@ -221,14 +224,14 @@ public class AlumnosAppAcademiaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         AlumnosTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                   alumnoSeleccionado = newValue;
-                });
-        
+            alumnoSeleccionado = newValue;
+        });
+
         barraBusqueda.textProperty().addListener((observable, oldValue, newValue)
                 -> AlumnosTableView.setItems(listaFiltraAlumnos(listaAlumnos, newValue)));
-        
+
         // TODO
         dniColumn.setCellValueFactory(new PropertyValueFactory<>("dni"));
         nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nomAlumno"));
@@ -244,9 +247,6 @@ public class AlumnosAppAcademiaController implements Initializable {
                     return property;
                 });
         telefonoColumn.setCellValueFactory(new PropertyValueFactory<>("telefono"));
-        
-        
-
     }
 
     public void cargarTodasPersonas() {
@@ -262,7 +262,7 @@ public class AlumnosAppAcademiaController implements Initializable {
         Query alumnoFindAll = em.createNamedQuery("Alumnos.findAll");
         listaAlumnos = alumnoFindAll.getResultList();
     }
-    
+
     //Busca las coincidencias con los campos especificados en la base de datos
     private boolean busqueda(Alumnos alumno, String searchText) {
         return (alumno.getDni().toLowerCase().contains(searchText.toLowerCase())
@@ -272,7 +272,7 @@ public class AlumnosAppAcademiaController implements Initializable {
                 || (alumno.getProvincia().getNombreProvincia().toLowerCase().contains(searchText.toLowerCase()))
                 || (alumno.getTelefono().toLowerCase().contains(searchText.toLowerCase())));
     }
-    
+
     //Filtro con el texto introducido
     private ObservableList<Alumnos> listaFiltraAlumnos(List<Alumnos> list, String searchText) {
         List<Alumnos> filteredList = new ArrayList<>();
@@ -283,5 +283,9 @@ public class AlumnosAppAcademiaController implements Initializable {
         }
         return FXCollections.observableList(filteredList);
     }
-    
+
+    @FXML
+    public void generarReporte() {
+        Comunes.generaInformes("nombreReport.jasper");
+    }
 }

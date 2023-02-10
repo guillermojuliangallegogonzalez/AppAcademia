@@ -210,6 +210,11 @@
                   <Image url="@../RecursosMenu/informacion.png" />
                </image>
             </ImageView>
+            <JFXButton fx:id="btnVerCursos" layoutX="555.0" layoutY="791.0" onAction="#generarReporte" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #1D2026;" text="Generar Reporte" textFill="WHITE">
+               <font>
+                  <Font name="Arial Hebrew" size="15.0" />
+               </font>
+            </JFXButton>
          </children>
       </Pane>
       <Pane layoutY="46.0" prefHeight="104.0" prefWidth="1250.0" style="-fx-background-color: #1D2026;">

@@ -22,19 +22,19 @@
          <children>
             <Pane layoutX="1.0" layoutY="24.0" prefHeight="129.0" prefWidth="265.0" style="-fx-background-color: #1D2026;">
                <children>
-                  <Label alignment="CENTER" layoutY="24.0" prefHeight="70.0" prefWidth="265.0" text="App Academia" textFill="WHITE">
+                  <Label alignment="CENTER" layoutY="-6.0" prefHeight="70.0" prefWidth="265.0" text="App Academia" textFill="WHITE">
                      <font>
                         <Font name="Arial Hebrew" size="34.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutY="85.0" prefHeight="34.0" prefWidth="265.0" text="by Jannus Team" textFill="WHITE">
+                  <Label alignment="CENTER" layoutY="55.0" prefHeight="34.0" prefWidth="265.0" text="by Jannus Team" textFill="WHITE">
                      <font>
                         <Font name="Courier New" size="23.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <JFXButton alignment="CENTER" layoutX="1.0" layoutY="276.0" onAction="#OnActionButtonInicioSeccion" prefHeight="79.0" prefWidth="265.0" text=" Inicio  " textFill="WHITE">
+            <JFXButton alignment="CENTER" layoutY="220.0" onAction="#OnActionButtonInicioSeccion" prefHeight="79.0" prefWidth="265.0" text=" Inicio  " textFill="WHITE">
                <font>
                   <Font name="Arial Hebrew Bold" size="27.0" />
                </font>
@@ -46,7 +46,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton alignment="CENTER" layoutX="1.0" layoutY="355.0" onAction="#OnActionButtonCursoSeccion" prefHeight="79.0" prefWidth="265.0" text=" Cursos  " textFill="WHITE">
+            <JFXButton alignment="CENTER" layoutX="1.0" layoutY="300.0" onAction="#OnActionButtonCursoSeccion" prefHeight="79.0" prefWidth="265.0" text=" Cursos  " textFill="WHITE">
                <font>
                   <Font name="Arial Hebrew Bold" size="27.0" />
                </font>
@@ -58,7 +58,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton alignment="CENTER" layoutY="427.0" onAction="#OnActionButtonMatriculaSeccion" prefHeight="79.0" prefWidth="265.0" text=" Matriculas   " textFill="WHITE">
+            <JFXButton alignment="CENTER" layoutY="372.0" onAction="#OnActionButtonMatriculaSeccion" prefHeight="79.0" prefWidth="265.0" text=" Matriculas   " textFill="WHITE">
                <font>
                   <Font name="Arial Hebrew Bold" size="27.0" />
                </font>
@@ -69,7 +69,7 @@
                      </image></ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton alignment="CENTER" layoutX="1.0" layoutY="506.0" onAction="#OnActionButtonAlumnoSeccion" prefHeight="79.0" prefWidth="265.0" text=" Alumnos   " textFill="WHITE">
+            <JFXButton alignment="CENTER" layoutX="1.0" layoutY="451.0" onAction="#OnActionButtonAlumnoSeccion" prefHeight="79.0" prefWidth="265.0" text=" Alumnos   " textFill="WHITE">
                <font>
                   <Font name="Arial Hebrew Bold" size="27.0" />
                </font>
@@ -89,6 +89,18 @@
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../RecursosMenu/About.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton alignment="CENTER" layoutY="531.0" onAction="#OnActionButtonAyuda" prefHeight="79.0" prefWidth="265.0" text=" Ayuda" textFill="WHITE">
+               <font>
+                  <Font name="Arial Hebrew Bold" size="27.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../RecursosMenu/ayuda.png" />
                      </image>
                   </ImageView>
                </graphic>

@@ -235,5 +235,10 @@
          </image>
       </ImageView>
       <Temporizador fx:id="temporizadorMatricula" layoutX="1063.0" layoutY="188.0" />
+      <JFXButton fx:id="btnVerMatriculas" layoutX="555.0" layoutY="791.0" onAction="#generarReporte" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #1D2026;" text="Generar Reporte" textFill="WHITE">
+         <font>
+            <Font name="Arial Hebrew" size="15.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

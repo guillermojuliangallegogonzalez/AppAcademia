@@ -30,6 +30,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
@@ -88,6 +89,8 @@ public class CursoAppAcademiaController implements Initializable {
     private AnchorPane cursosAnchorPane;
     @FXML
     private Temporizador temporizadorCursos;
+    @FXML
+    private Button btnVerCursos;
 
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("AppAcademiaPU");
     private EntityManager em = emf.createEntityManager();
@@ -113,9 +116,9 @@ public class CursoAppAcademiaController implements Initializable {
         restriccionesComponentes();
         //Configurar temporizador
         configTemporizador();
-        
+
     }
-    
+
     /*--------------------------------------------------------BOTONES------------------------------------------------------------------*/
     @FXML
     private void btnAceptarOnAction(ActionEvent event) {
@@ -449,7 +452,7 @@ public class CursoAppAcademiaController implements Initializable {
             alert.setContentText("El tiempo máximo de espera ha sido superado.");
             alert.initOwner(btnAceptar.getScene().getWindow());
             alert.show();
-            
+
             // Reseteamos la encuesta volviendo atrás para que se tenga que reacer la inserción de datos
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InicioAppAcademia.fxml"));
@@ -467,5 +470,10 @@ public class CursoAppAcademiaController implements Initializable {
         temporizadorCursos.setTime(90);
         //Iniciamos temporizador
         temporizadorCursos.iniciar();
+    }
+
+    @FXML
+    public void generarReporte() {
+        Comunes.generaInformes("nombreReport.jasper");
     }
 }

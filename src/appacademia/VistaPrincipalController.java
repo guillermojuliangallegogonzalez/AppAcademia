@@ -7,13 +7,16 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
 
 /**
  * @author Alejandro, Guillermo, Juanjo
@@ -23,9 +26,7 @@ public class VistaPrincipalController implements Initializable {
     // Variables
     private EntityManagerFactory emf;
     private EntityManager em;
-  
-    
-    
+
     @FXML
     private AnchorPane inicioAnchorPane;
     @FXML
@@ -72,7 +73,7 @@ public class VistaPrincipalController implements Initializable {
             alert.setTitle("ERROR BASE DE DATOS");
             alert.setHeaderText(
                     "La base de datos no se encuentra actualmente en servicio. ¿Desea reintentar la conexión? \n "
-                            + "Contacte con el administrador janusteam@ieslosmontecillos.com si el problema persiste");
+                    + "Contacte con el administrador janusteam@ieslosmontecillos.com si el problema persiste");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 OnActionButtonMatriculaSeccion();
@@ -88,7 +89,6 @@ public class VistaPrincipalController implements Initializable {
         matriculaViewController.setEntityManager(em);
     }
 
-
     // Cambio AnchorPane Alumno
     @FXML
     public void OnActionButtonAlumnoSeccion() {
@@ -102,7 +102,7 @@ public class VistaPrincipalController implements Initializable {
             alert.setTitle("ERROR BASE DE DATOS");
             alert.setHeaderText(
                     "La base de datos no se encuentra actualmente en servicio. ¿Desea reintentar la conexión? \n "
-                            + "Contacte con el administrador janusteam@ieslosmontecillos.com si el problema persiste");
+                    + "Contacte con el administrador janusteam@ieslosmontecillos.com si el problema persiste");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 OnActionButtonAlumnoSeccion();
@@ -132,7 +132,7 @@ public class VistaPrincipalController implements Initializable {
             alert.setTitle("ERROR BASE DE DATOS");
             alert.setHeaderText(
                     "La base de datos no se encuentra actualmente en servicio. ¿Desea reintentar la conexión? \n "
-                            + "Contacte con el administrador janusteam@ieslosmontecillos.com si el problema persiste");
+                    + "Contacte con el administrador janusteam@ieslosmontecillos.com si el problema persiste");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 OnActionButtonCursoSeccion();
@@ -140,14 +140,34 @@ public class VistaPrincipalController implements Initializable {
         }
 
     }
-    
+
+    @FXML
+    public void OnActionButtonAyuda() throws IOException {
+
+        Stage stage;
+        Scene scene;
+        Image image;
+        
+        stage = new Stage();
+        image = new Image("/webresources/ayuda_black.png");
+
+
+        // create the scene
+        stage.setTitle( "Ayuda App Academia");
+        stage.getIcons().add(image);
+        scene = new Scene(new Browser(), 1080, 750, Color.web("#666970"));
+        stage.setScene(scene);
+
+        stage.show();
+    }
+
     public void setEntityManager(EntityManager em) {
         this.em = em;
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
     }
 
 }

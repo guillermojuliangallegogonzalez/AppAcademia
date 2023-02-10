@@ -37,6 +37,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
@@ -122,6 +123,8 @@ public class MatriculaAppAcademiaController implements Initializable {
     private Temporizador temporizadorMatricula;
     @FXML
     private JFXButton btnAceptar;
+    @FXML
+    private Button btnVerCursos;
 
     /*-------------------------------------------------INICIALIZAR-----------------------------------------------------------*/
     @Override
@@ -136,7 +139,7 @@ public class MatriculaAppAcademiaController implements Initializable {
 
         //Dni Pattern
         Comunes.dniPattern(dniTextField);
-        
+
         //Restricción longitud teléfono
         telefonoTextField.addEventFilter(KeyEvent.KEY_TYPED, Comunes.maxLength(40));
 
@@ -148,10 +151,9 @@ public class MatriculaAppAcademiaController implements Initializable {
 
         //Listener DNI
         listenerDNI();
-        
+
         //Configurar temporizador
         configTemporizador();
-        
 
     }
 
@@ -325,7 +327,7 @@ public class MatriculaAppAcademiaController implements Initializable {
 
     @FXML
     private void CambioImagenPosicionRaton() {
-        if(this.imagenIntroducida == false){
+        if (this.imagenIntroducida == false) {
             Image cargaDeVuelta = new Image("/RecursosMenu/seleccionPerfil.png");
             imageViewFoto.setImage(cargaDeVuelta);
         }
@@ -333,7 +335,7 @@ public class MatriculaAppAcademiaController implements Initializable {
 
     @FXML
     private void CambioImagenPosicionRatonSalida() {
-        if(this.imagenIntroducida == false){
+        if (this.imagenIntroducida == false) {
             Image cargaDeVuelta = new Image("/RecursosMenu/perfil.png");
             imageViewFoto.setImage(cargaDeVuelta);
         }
@@ -787,7 +789,7 @@ public class MatriculaAppAcademiaController implements Initializable {
             e.printStackTrace();
         }
     }
-    
+
     // Método para abrir la información de relleno 
     @FXML
     public void imageViewInfoOnAction(MouseEvent event) {
@@ -820,7 +822,7 @@ public class MatriculaAppAcademiaController implements Initializable {
             alert.setContentText("El tiempo máximo de espera ha sido superado.");
             alert.initOwner(btnAceptar.getScene().getWindow());
             alert.show();
-            
+
             // Reseteamos la encuesta volviendo atrás para que se tenga que reacer la inserción de datos
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InicioAppAcademia.fxml"));
@@ -839,5 +841,10 @@ public class MatriculaAppAcademiaController implements Initializable {
         //Iniciamos temporizador
         temporizadorMatricula.iniciar();
     }
-    
+
+    // Genera el reporte de esta clase
+    @FXML
+    public void generarReporte() {
+        Comunes.generaInformes("nombreReport.jasper");
+    }
 }
