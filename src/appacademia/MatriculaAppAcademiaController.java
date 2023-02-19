@@ -845,6 +845,6 @@ public class MatriculaAppAcademiaController implements Initializable {
     // Genera el reporte de esta clase
     @FXML
     public void generarReporte() {
-        Comunes.generaInformes("nombreReport.jasper");
+        Comunes.generaInformes("AppAcademiaMatriucla.jasper");
     }
 }

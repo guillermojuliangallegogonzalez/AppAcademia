@@ -24,6 +24,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
@@ -277,14 +278,16 @@ public class Comunes {
 
     // Método para generar los informese de JasperReport
     public static void generaInformes(String nombreJasperReport) {
-        
-        conexion = conectar();
-        
-        try {
-            JasperReport jr = (JasperReport) JRLoader.loadObject(Comunes.class.getResource(nombreJasperReport));
-            // Map de parámetros
-            Map parametros = new HashMap();
 
+        // Establecemos Conexión con la base de datos
+        conexion = conectar();
+
+        try {
+            JasperReport jr = (JasperReport) JRLoader.loadObject(Comunes.class.getResource("/jaspers/" + nombreJasperReport));
+            // Map de parámetros
+            String image = Comunes.class.getResource("/jaspers/janus.jpg").toString();
+            Map parametros = new HashMap();
+            parametros.put("Image", image);
             JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr,
                     parametros, conexion);
             // **  Al establecer false, tras cerrar el jasper creado, no se terminará la ejecución de la aplicación
@@ -300,9 +303,9 @@ public class Comunes {
     public static Connection conectar() {
         conexion = null; // Variable de tipo Connection para establecer la conexión
 
-        // Establecemos conexión con la BD ******* MODIFICAR NOMBRE DE LA BASE DE DATOS *********
-        String baseDatos = "jdbc:hsqldb:hsql://localhost/SampleDB";
-        String usuario = "sa";
+        // Establecemos conexión con la BD 
+        String baseDatos = "jdbc:hsqldb:hsql://localhost/BDAcademia";
+        String usuario = "SA";
         String clave = "";
 
         try {

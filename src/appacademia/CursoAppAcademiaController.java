@@ -474,6 +474,7 @@ public class CursoAppAcademiaController implements Initializable {
 
     @FXML
     public void generarReporte() {
-        Comunes.generaInformes("nombreReport.jasper");
+        Comunes.generaInformes("ListaCurso.jasper");
+
     }
 }

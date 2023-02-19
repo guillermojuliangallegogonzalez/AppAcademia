@@ -30,27 +30,38 @@ import netscape.javascript.JSObject;
 class Browser extends Region {
 
     private HBox toolBar;
-    
+
     private static String[] imageFiles = new String[]{
-        "/webresources/Menu.png",
-        "/webresources/Cursos.png",
-        "/webresources/Encuesta.png",
-        "/webresources/Alumno.png"
+        "/webresources/Home.png",
+        "/webresources/Curso.png",
+        "/webresources/Matricula.png",
+        "/webresources/Alumno.png",
+        "/webresources/Informe1.png",
+        "/webresources/Informe2.png",
+        "/webresources/Informe3.png",
+        "/webresources/video.png"
     };
 
     private static String[] captions = new String[]{
         " Inicio ",
         " Curso ",
         " Matrícula ",
-        " Alumno "
+        " Alumno ",
+        " Informe Curso ",
+        " Informe Matricula ",
+        " Informe Alumno ",
+        "Video Tutorial"
     };
 
     private static String[] urls = new String[]{
-        "https://moodle.org/?lang=es",
-        "https://www.facebook.com/ieslosmontecillos/?locale=es_ES",
-        "http://docs.oracle.com/javase/index.html",
-        "https://twitter.com/losmontecillos?lang=es",
-        //Browser.class.getResource("help.html").toExternalForm()
+        Browser.class.getResource("/topics/Home_Topics.xhtml").toExternalForm(),
+        Browser.class.getResource("/topics/Curso_Topic.xhtml").toExternalForm(),
+        Browser.class.getResource("/topics/Matricula_Topic.xhtml").toExternalForm(),
+        Browser.class.getResource("/topics/Alumnos_Topic.xhtml").toExternalForm(),
+        Browser.class.getResource("/topics/Curso_Report.xhtml").toExternalForm(),
+        Browser.class.getResource("/topics/Matricula_Report_Topic.xhtml").toExternalForm(),
+        Browser.class.getResource("/topics/Alumnos_Jasper_Topic.xhtml").toExternalForm(),
+        "https://www.google.es"
     };
 
     final ImageView selectedImage = new ImageView();
@@ -119,7 +130,7 @@ class Browser extends Region {
         );
 
         // load the web page
-        webEngine.load("https://www.google.es/");
+        webEngine.load(Browser.class.getResource("/topics/Home_Topics.xhtml").toExternalForm());
 
         //add components
         getChildren().add(toolBar);
